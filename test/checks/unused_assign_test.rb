@@ -74,4 +74,19 @@ class UnusedAssignTest < Minitest::Test
     )
     assert_offenses("", offenses)
   end
+
+  def test_removes_unused_assign
+    expected_sources = {
+      "templates/index.liquid" => "\n",
+    }
+    sources = fix_theme(
+      ThemeCheck::UnusedAssign.new,
+      "templates/index.liquid" => <<~END,
+        {% assign x = 1 %}
+      END
+    )
+    sources.each do |path, source|
+      assert_equal(expected_sources[path], source)
+    end
+  end
 end

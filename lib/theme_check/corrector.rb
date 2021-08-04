@@ -27,5 +27,10 @@ module ThemeCheck
       line.insert(node.range[0], insert_before)
       line.insert(node.range[1] + 1 + insert_before.length, insert_after)
     end
+
+    def remove_line(node)
+      line = @template.full_line(node.line_number)
+      line.clear
+    end
   end
 end

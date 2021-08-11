@@ -20,6 +20,7 @@ module ThemeCheck
     end
 
     def write(relative_path, content)
+      file(relative_path).dirname.mkpath unless file(relative_path).dirname.directory?
       file(relative_path).write(content)
     end
 

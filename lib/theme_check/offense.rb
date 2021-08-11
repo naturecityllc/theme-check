@@ -104,7 +104,7 @@ module ThemeCheck
     end
 
     def correctable?
-      line_number && correction
+      !!correction
     end
 
     def correct
